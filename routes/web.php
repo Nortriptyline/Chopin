@@ -11,6 +11,10 @@
 |
 */
 
+Route::prefix('admin')->group(function() {
+    Route::get('/', 'Admin\HomeController@index');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
