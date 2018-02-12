@@ -4,9 +4,57 @@
 
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
+@import "_variables";
+
+#app {
+    background-color: $gray-100;
+}
 
 .nav-left {
     top: 56px;
     height: 100%;
     padding: 0;
+
+    > li {
+        > a {
+            font-size: 1.2em;
+        }
+    }
+
+    > li.selected {
+        background-color: $blue-light;
+        > a {
+            color: $white;
+        }
+    }
+
+    li {
+        a {
+            color: $white;
+        }
+    }
+
+    li {
+        a:hover {
+            color: $blue;
+        }
+    }
+
+    .subnav {
+        background-color: $dark-light;
+
+        > li.selected {
+            font-weight: 800;
+        }
+
+        li {
+            a {
+                font-size: 0.9em;
+            }
+        }
+    }
+}
+
+.cs-bg-dark {
+    background-color: $dark;
 }

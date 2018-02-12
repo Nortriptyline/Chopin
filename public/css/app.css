@@ -9994,9 +9994,49 @@ a.text-dark:focus {
   }
 }
 
+#app {
+  background-color: #f8f9fa;
+}
+
 .nav-left {
   top: 56px;
   height: 100%;
   padding: 0;
+}
+
+.nav-left > li > a {
+  font-size: 1.2em;
+}
+
+.nav-left > li.selected {
+  background-color: #1381FF;
+}
+
+.nav-left > li.selected > a {
+  color: #fff;
+}
+
+.nav-left li a {
+  color: #fff;
+}
+
+.nav-left li a:hover {
+  color: #007bff;
+}
+
+.nav-left .subnav {
+  background-color: #32373c;
+}
+
+.nav-left .subnav > li.selected {
+  font-weight: 800;
+}
+
+.nav-left .subnav li a {
+  font-size: 0.9em;
+}
+
+.cs-bg-dark {
+  background-color: #23282d;
 }
 

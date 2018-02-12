@@ -16,16 +16,16 @@
 <body>
 
     <div id="app">
-        
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+
+        <nav class="navbar navbar-expand-lg navbar-dark cs-bg-dark fixed-top">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <a class="navbar-brand" href="#">Hidden brand</a>
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
+                    <!-- <li class="nav-item active">
                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
@@ -33,23 +33,30 @@
                     </li>
                     <li class="nav-item">
                       <a class="nav-link disabled" href="#">Disabled</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </nav>
 
-        <ul id="left_nav" class="nav-left nav flex-column fixed-top bg-dark col-1">
-            <li class="nav-item">
-                <a id="headingArticles" data-toggle="collapse" data-target="#collapseArticles" aria-expanded="true" aria-controls="collapseArticles" class="nav-link text-light" href="#">Articles</a>
-                <ul id="collapseArticles" class="collapse show list-group" aria-labbeledby="headingArticles" data-parent="#left_nav">
-                    <li class="list-group-item list-group-item-secondary">Article</li>
-                    <li class="list-group-item list-group-item-secondary">Catégories</li>
+        <nav id="left_nav" class="nav-left nav flex-column fixed-top cs-bg-dark col-1">
+            <li class="nav-item selected">
+                <a id="headingArticles" data-toggle="collapse" data-target="#collapseArticles" aria-expanded="true" aria-controls="collapseArticles" class="nav-link text-light" href="#">@lang('admin/navbar.title_posts')</a>
+                <ul id="collapseArticles" class="collapse show list-group nav subnav" aria-labbeledby="headingArticles" data-parent="#left_nav">
+                    <li class="nav-item">
+                        <a href="" class="nav-link">@lang('admin/navbar.subtitle_all_posts')</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">@lang('admin/navbar.subtitle_add_posts')</a>
+                    </li>
+                    <li class="nav-item selected">
+                        <a href="" class="nav-link">@lang('admin/navbar.subtitle_categories')</a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light" href="#">Utilisateurs</a>
+                <a class="nav-link text-light" href="#">@lang('admin/navbar.title_users')</a>
             </li>
-        </ul>
+        </nav>
 
         <!-- <div class="container-fluid">
             <div class="row">
@@ -71,7 +78,10 @@
                 </div>
             </div>
         </div> -->
-        @yield('content')        
+
+        <div class="col-md-11 offset-md-1">
+            @yield('content')
+        </div>
     </div>
 
     <!-- Scripts -->
