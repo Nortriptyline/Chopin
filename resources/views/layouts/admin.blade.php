@@ -14,16 +14,13 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-
     <div id="app">
-
-
         <nav class="navbar navbar-expand-lg navbar-dark cs-bg-dark fixed-top">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a class="navbar-brand" href="#">Hidden brand</a>
+                <h1><a class="navbar-brand" href="#">{{ config('app.name', 'Laravel') }}</a></h1>
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <!-- <li class="nav-item active">
                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -39,52 +36,48 @@
         </nav>
 
         <nav id="left_nav" class="nav-left nav flex-column fixed-top cs-bg-dark col-1">
-            <li class="nav-item selected">
-                <a id="headingArticles" data-toggle="collapse" data-target="#collapseArticles" aria-expanded="true" aria-controls="collapseArticles" class="nav-link text-light" href="#">@lang('admin/navbar.title_posts')</a>
-                <ul id="collapseArticles" class="collapse show list-group nav subnav" aria-labbeledby="headingArticles" data-parent="#left_nav">
-                    <li class="nav-item">
-                        <a href="" class="nav-link">@lang('admin/navbar.subtitle_all_posts')</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link">@lang('admin/navbar.subtitle_add_posts')</a>
-                    </li>
-                    <li class="nav-item selected">
-                        <a href="" class="nav-link">@lang('admin/navbar.subtitle_categories')</a>
-                    </li>
-                </ul>
+
+            <li class="nav-item @selected(admin/posts) @selected(admin)">
+                <a class="nav-link text-light" href="{{ route('admin.') }}">@lang('admin/navbar.title_posts')</a>
+                @if(Request::is('admin/posts*') || Request::is('admin'))
+                    <ul class="list-group nav subnav">
+                        <li class="nav-item">
+                            <a href="" class="nav-link">@lang('admin/navbar.subtitle_all_posts')</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">@lang('admin/navbar.subtitle_add_posts')</a>
+                        </li>
+                        <li class="nav-item selected">
+                            <a href="" class="nav-link">@lang('admin/navbar.subtitle_categories')</a>
+                        </li>
+                    </ul>
+                @endif
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" href="#">@lang('admin/navbar.title_users')</a>
+
+            <li class="nav-item @selected(admin/users*)">
+                <a class="nav-link text-light" href="{{ route('admin.users.index') }}">@lang('admin/navbar.title_users')</a>
+                @if(Request::is('admin/users*'))
+                    <ul class="list-group nav subnav">
+                        <li class="nav-item @selected(admin/users*)">
+                            <a href="{{ route('admin.users.index') }}" class="nav-link">@lang('admin/navbar.subtitle_all_users')</a>
+                        </li>
+                        <li class="nav-item @selected(admin/users/create)">
+                            <a href="{{ route('admin.users.create') }}" class="nav-link">@lang('admin/navbar.subtitle_add_users')</a>
+                        </li>
+                        <li class="nav-item @selected(admin/users/roles)">
+                            <a href="{{ route('admin.roles.index') }}" class="nav-link">@lang('admin/navbar.subtitle_roles')</a>
+                        </li>
+                    </ul>
+                @endif
             </li>
         </nav>
 
-        <!-- <div class="container-fluid">
-            <div class="row">
-                <div class="col-3 col-sm-2 col-md-2 col-lg-1 col-xl-1">
-                    <nav class="nav navbar-light navbar-toggleable-sm">
-                        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarWEX" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="navbar-collapse collapse flex-column mt-md-0 mt-4 pt-md-0 pt-4" id="navbarWEX">
-                            <a class="nav-link navbar-brand active" href="~/Views/Forms/ControlPanel.cshtml"><span class="fa fa-home"></span></a>
-                            <a href="" class="nav-link">Linnk</a>
-                            <a href="" class="nav-link">Linnk</a>
-                            <a href="" class="nav-link">Linnk</a>
-                        </div>
-                    </nav>
-                </div>
-                <div class="col-9 col-sm-10 col-md-10 col-lg-11 col-xl-11">
-                    <h2>Hello There</h2>
-                </div>
-            </div>
-        </div> -->
-
-        <div class="col-md-11 offset-md-1">
+        <main class="col-md-11 offset-md-1 admin_content">
             @yield('content')
-        </div>
+        </main>
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></scripselectedt>
 </body>
 </html>
