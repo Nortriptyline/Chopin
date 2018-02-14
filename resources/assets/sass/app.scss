@@ -11,7 +11,7 @@
 }
 
 .nav-left {
-    top: 56px;
+    top: $admin-header-height;
     height: 100%;
     padding: 0;
 
@@ -50,6 +50,21 @@
         li {
             a {
                 font-size: 0.9em;
+            }
+        }
+    }
+}
+
+.admin_content {
+    margin-top: $admin-header-height;
+    padding: 25px;
+
+    table {
+        tbody {
+            tr {
+                td {
+                    border: none;
+                }
             }
         }
     }

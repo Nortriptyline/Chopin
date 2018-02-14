@@ -9999,7 +9999,7 @@ a.text-dark:focus {
 }
 
 .nav-left {
-  top: 56px;
+  top: 64px;
   height: 100%;
   padding: 0;
 }
@@ -10034,6 +10034,15 @@ a.text-dark:focus {
 
 .nav-left .subnav li a {
   font-size: 0.9em;
+}
+
+.admin_content {
+  margin-top: 64px;
+  padding: 25px;
+}
+
+.admin_content table tbody tr td {
+  border: none;
 }
 
 .cs-bg-dark {
