@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
+use App\Events\UserRegistered;
+use App\User;
+use App\Role;
 
 class UserController extends Controller
 {
@@ -28,6 +31,8 @@ class UserController extends Controller
     public function create()
     {
         //
+        $roles = Role::all();
+        return view('admin.users.create', ['roles' => $roles]);
     }
 
     /**
@@ -38,7 +43,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validator($request->all())->validate();
+        $user = $this->register($request->all());
+        event(new UserRegistered($user));
     }
 
     /**
@@ -85,5 +92,32 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @return \Illuminate\Contracts\Validation\Validator
+     * @param  array  $data
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+            'role' => 'required|integer|exists:roles,id',
+        ]);
+    }
+
+    /**
+     *
+     */
+    protected function register(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
     }
 }

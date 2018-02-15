@@ -114,7 +114,10 @@ return [
             'port' => env('REDIS_PORT', 6379),
             'database' => 0,
         ],
-
+        'queue' => '{default}',
+        'retry_after' => 90,
+        'connection' => 'default',
+        'driver' => 'redis',
     ],
 
 ];

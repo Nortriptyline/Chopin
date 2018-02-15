@@ -76,9 +76,9 @@
                     @endauth
                 </div>
             @endif
-
             <div class="content">
                 <div class="title m-b-md">
+                    <a href="{{ route('admin.') }}">tarpe</a>
                     Laravel
                 </div>
 
