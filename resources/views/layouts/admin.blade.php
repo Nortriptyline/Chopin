@@ -58,7 +58,7 @@
                 <a class="nav-link text-light" href="{{ route('admin.users.index') }}">@lang('admin/navbar.title_users')</a>
                 @if(Request::is('admin/users*'))
                     <ul class="list-group nav subnav">
-                        <li class="nav-item @selected(admin/users*)">
+                        <li class="nav-item @selected(admin/users)">
                             <a href="{{ route('admin.users.index') }}" class="nav-link">@lang('admin/navbar.subtitle_all_users')</a>
                         </li>
                         <li class="nav-item @selected(admin/users/create)">
@@ -78,6 +78,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></scripselectedt>
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

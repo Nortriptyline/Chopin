@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Blade::directive('selected', function($path) {
-           return $this->app->request->is($path) ? " selected " : "";
+            return "<?php if(Request::is('$path')) echo ' selected '; ?>";
         });
     }
 
