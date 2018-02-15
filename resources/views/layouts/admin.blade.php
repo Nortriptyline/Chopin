@@ -54,22 +54,24 @@
                 @endif
             </li>
 
-            <li class="nav-item @selected(admin/users*)">
-                <a class="nav-link text-light" href="{{ route('admin.users.index') }}">@lang('admin/navbar.title_users')</a>
-                @if(Request::is('admin/users*'))
-                    <ul class="list-group nav subnav">
-                        <li class="nav-item @selected(admin/users)">
-                            <a href="{{ route('admin.users.index') }}" class="nav-link">@lang('admin/navbar.subtitle_all_users')</a>
-                        </li>
-                        <li class="nav-item @selected(admin/users/create)">
-                            <a href="{{ route('admin.users.create') }}" class="nav-link">@lang('admin/navbar.subtitle_add_users')</a>
-                        </li>
-                        <li class="nav-item @selected(admin/users/roles)">
-                            <a href="{{ route('admin.roles.index') }}" class="nav-link">@lang('admin/navbar.subtitle_roles')</a>
-                        </li>
-                    </ul>
-                @endif
-            </li>
+            @can('index', App\User::class)
+                <li class="nav-item @selected(admin/users*)">
+                    <a class="nav-link text-light" href="{{ route('admin.users.index') }}">@lang('admin/navbar.title_users')</a>
+                    @if(Request::is('admin/users*'))
+                        <ul class="list-group nav subnav">
+                            <li class="nav-item @selected(admin/users)">
+                                <a href="{{ route('admin.users.index') }}" class="nav-link">@lang('admin/navbar.subtitle_all_users')</a>
+                            </li>
+                            <li class="nav-item @selected(admin/users/create)">
+                                <a href="{{ route('admin.users.create') }}" class="nav-link">@lang('admin/navbar.subtitle_add_users')</a>
+                            </li>
+                            <li class="nav-item @selected(admin/users/roles)">
+                                <a href="{{ route('admin.roles.index') }}" class="nav-link">@lang('admin/navbar.subtitle_roles')</a>
+                            </li>
+                        </ul>
+                    @endif
+                </li>
+            @endcan
         </nav>
 
         <main class="col-md-11 offset-md-1 admin_content">

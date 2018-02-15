@@ -15,6 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorize('index', User::class);
         $users = User::simplePaginate(10);
         return view('admin.users.index', ['users' => $users]);
     }
