@@ -11,11 +11,7 @@ class UserPolicy
 
     public function before($user, $ability)
     {
-        if ($user->role->access_level <= 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return true;
     }
     /**
      * Determine whether the user can view all elements

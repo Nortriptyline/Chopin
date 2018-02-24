@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +16,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        setlocale(LC_ALL, 'fr_FR.utf8');
+
         Blade::directive('selected', function($path) {
             return "<?php if(Request::is('$path')) echo ' selected '; ?>";
         });

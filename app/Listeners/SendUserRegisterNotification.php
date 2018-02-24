@@ -4,9 +4,9 @@ namespace App\Listeners;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Factories\Password_initFactory as Password_init;
 use App\Events\UserRegistered;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\UserRegistered as MailUserRegistered;
+use App\Notifications\UserCreated;
 
 class SendUserRegisterNotification implements ShouldQueue
 {
@@ -28,6 +28,7 @@ class SendUserRegisterNotification implements ShouldQueue
      */
     public function handle(UserRegistered $event)
     {
-        Mail::to($event->user)->send(new MailUserRegistered($event->user));
+        $passwordInit = Password_init::build($event->user->email);
+        $event->user->notify(new UserCreated($passwordInit));
     }
 }

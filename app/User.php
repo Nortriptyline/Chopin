@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Role');
     }
+
+    public function password_init()
+    {
+        return $this->hasOne('App\Password_init', 'email', 'email');
+    }
 }

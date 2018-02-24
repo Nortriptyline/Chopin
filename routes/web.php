@@ -15,12 +15,15 @@ Route::group([
     'prefix' => 'admin',
     'namespace' => 'Admin',
     'as' => 'admin.',
+    'middleware' => 'can:access-admin',
 ], function() {
     Route::get('', 'HomeController@index');
     Route::resource('users', 'UserController');
     Route::resource('roles', 'RoleController');
 });
 
+Route::get('init_password/{token}', 'InitPasswordController@index')->name('password.show_init');
+Route::post('init_password', 'InitPasswordController@initialize')->name('password.init');
 
 Route::get('/', function () {
     return view('welcome');

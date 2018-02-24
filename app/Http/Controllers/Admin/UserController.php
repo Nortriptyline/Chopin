@@ -19,7 +19,7 @@ class UserController extends Controller
     public function index()
     {
         $this->authorize('index', User::class);
-        $users = User::simplePaginate(10);
+        $users = User::paginate(10);
         return view('admin.users.index', ['users' => $users]);
     }
 
@@ -46,6 +46,8 @@ class UserController extends Controller
         $this->validator($request->all())->validate();
         $user = $this->register($request->all());
         event(new UserRegistered($user));
+        $request->session()->flash('success', 'Email d\'initialisation envoyé à ' . $user->email);
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -104,7 +106,6 @@ class UserController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
             'role' => 'required|integer|exists:roles,id',
         ]);
     }
@@ -117,7 +118,6 @@ class UserController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
         ]);
     }
 }

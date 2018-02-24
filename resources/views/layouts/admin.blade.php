@@ -75,6 +75,11 @@
         </nav>
 
         <main class="col-md-11 offset-md-1 admin_content">
+            @if (session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
             @yield('content')
         </main>
     </div>
