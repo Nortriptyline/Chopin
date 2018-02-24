@@ -65,9 +65,9 @@
                             <li class="nav-item @selected(admin/users/create)">
                                 <a href="{{ route('admin.users.create') }}" class="nav-link">@lang('admin/navbar.subtitle_add_users')</a>
                             </li>
-                            <li class="nav-item @selected(admin/users/roles)">
+                            <!-- <li class="nav-item @selected(admin/users/roles)">
                                 <a href="{{ route('admin.roles.index') }}" class="nav-link">@lang('admin/navbar.subtitle_roles')</a>
-                            </li>
+                            </li> -->
                         </ul>
                     @endif
                 </li>
@@ -80,6 +80,20 @@
                     {{ session('success') }}
                 </div>
             @endif
+
+            @if (session('danger'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('danger') }}
+                </div>
+            @endif
+
+            @if (session('warning'))
+                <div class="alert alert-warning" role="alert">
+                    {{ session('warning') }}
+                </div>
+            @endif
+
+
             @yield('content')
         </main>
     </div>

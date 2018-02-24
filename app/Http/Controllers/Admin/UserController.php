@@ -94,6 +94,13 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+        if (!Auth::check() || Auth::user()->role->access_level >= $user->role->access_level) {
+            return redirect()->route('home');
+        }
+
+        $user->delete();
+        session()->flash('danger', $user->name . ' a été supprimé.');
+        return redirect()->back();
     }
     /**
      * Get a validator for an incoming registration request.

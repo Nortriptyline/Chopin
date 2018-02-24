@@ -19,8 +19,16 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->role->name }}</td>
                     <td>
-                        <a class="btn btn-outline-primary" href="{{ route('admin.users.edit', ['user' => $user]) }}">Editer</a>
-                        <a class="btn btn-outline-danger" href="{{ route('admin.users.index') }}">Supprimer</a>
+                        <!-- <a class="btn btn-outline-primary" href="{{ route('admin.users.edit', ['user' => $user]) }}">Editer</a> -->
+
+                        @if (Auth::user()->role->access_level < $user->role->access_level)
+                            <form class="d-inline" action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
+                                {{ csrf_field() }}
+
+                                {{ method_field('DELETE') }}
+                                <button class="btn btn-outline-danger">Supprimer</button>
+                            </form>
+                        @endif
                     </td>
                 </tr>
                 @endforeach
